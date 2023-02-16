@@ -48,7 +48,14 @@ img_list = []
 vidcap = cv2.VideoCapture('test_video.MOV')
 success,image = vidcap.read()
 count = 0
-while success:
+# while success:
+#     img_list.append(image)
+#     cv2.imwrite("frame%d.jpg" % count, image)     # save frame as JPEG file      
+#     success,image = vidcap.read()
+#     print('Read a new frame: ', success)
+#     count += 1
+
+for i in range(1):
     img_list.append(image)
     # cv2.imwrite("frame%d.jpg" % count, image)     # save frame as JPEG file      
     success,image = vidcap.read()
@@ -60,6 +67,14 @@ while success:
 # model to identify position of centre of eye from image frame (distance either in pixels or mm from left edge of eye)
 # a simple model that i came up with is to identify left and right edges of eye, then find the midpoint between the 2 edges
 # to build on this, i would identify the top and bottom edges of the eye, then find the intersection of the 2 lines
+# use opencv functions to identify edges of eye
+for img in img_list:
+    img_grey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    eyes = cv2.eyes_cascade.detectMultiScale(img_grey)
+    for (x2,y2,w2,h2) in eyes:
+        eye_center = (x + x2 + w2//2, y + y2 + h2//2)
+        radius = int(round((w2 + h2)*0.25))
+        frame = cv.circle(frame, eye_center, radius, (255, 0, 0 ), 4)
 
 # place positions of centre of eye into a dataframe
 
