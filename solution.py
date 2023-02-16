@@ -38,6 +38,7 @@
 # https://www.nature.com/articles/s41598-020-60531-3
 # https://www.nature.com/articles/s41467-020-19712-x
 # https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=ac942c4870e55fe1d9822d62edcdb685d41cd2bf
+# https://www.mdpi.com/1424-8220/20/13/3785
 
 
 # read images from video file. press esc to quit converting video to images
@@ -57,6 +58,8 @@ while success:
 # SVM model to classify eye from non-eye images, remove all non-eye images
 
 # model to identify position of centre of eye from image frame (distance either in pixels or mm from left edge of eye)
+# a simple model that i came up with is to identify left and right edges of eye, then find the midpoint between the 2 edges
+# to build on this, i would identify the top and bottom edges of the eye, then find the intersection of the 2 lines
 
 # place positions of centre of eye into a dataframe
 
