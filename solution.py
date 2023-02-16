@@ -66,15 +66,16 @@ for i in range(1):
 
 # model to identify position of centre of eye from image frame (distance either in pixels or mm from left edge of eye)
 # a simple model that i came up with is to identify left and right edges of eye, then find the midpoint between the 2 edges
-# to build on this, i would identify the top and bottom edges of the eye, then find the intersection of the 2 lines
 # use opencv functions to identify edges of eye
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 for img in img_list:
     img_grey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    eyes = cv2.eyes_cascade.detectMultiScale(img_grey)
-    for (x2,y2,w2,h2) in eyes:
-        eye_center = (x + x2 + w2//2, y + y2 + h2//2)
-        radius = int(round((w2 + h2)*0.25))
-        frame = cv.circle(frame, eye_center, radius, (255, 0, 0 ), 4)
+    eyes = eye_cascade.detectMultiScale(img_grey)
+    for (x,y,w,h) in eyes:
+        eye_centre = (x + w//2, y + h//2)
+        radius = int(round((w + h)*0.25))
+        img = cv2.circle(img, eye_centre, radius, (255, 0, 0 ), 4)
+    cv2.imshow('Capture - Face detection', img) # do not run this, there is no eye to identify in test_video.MOV
 
 # place positions of centre of eye into a dataframe
 
