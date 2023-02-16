@@ -43,13 +43,25 @@
 # read images from video file. press esc to quit converting video to images
 import cv2
 
+img_list = []
 vidcap = cv2.VideoCapture('test_video.MOV')
 success,image = vidcap.read()
 count = 0
 while success:
-  cv2.imwrite("frame%d.jpg" % count, image)     # save frame as JPEG file      
-  success,image = vidcap.read()
-  print('Read a new frame: ', success)
-  count += 1
+    img_list.append(image)
+    # cv2.imwrite("frame%d.jpg" % count, image)     # save frame as JPEG file      
+    success,image = vidcap.read()
+    print('Read a new frame: ', success)
+    count += 1
 
-# SVM model to classify eye from non-eye images
+# SVM model to classify eye from non-eye images, remove all non-eye images
+
+# model to identify position of centre of eye from image frame (distance either in pixels or mm from left edge of eye)
+
+# place positions of centre of eye into a dataframe
+
+# do analysis on the dataframe to extract OKR and OKN
+# Amplitude: calculate largest distance between 2 values in the dataframe
+# Frequency: calculate number of frames per cycle of the OKR (i.e. number of frames between 2 consecutive peaks in the dataframe)
+
+# done, pending further analysis of generated data
