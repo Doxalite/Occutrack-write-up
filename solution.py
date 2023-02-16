@@ -14,13 +14,10 @@
 #          Then track centre of eye over many video frames to determine position change.
 #          I can calculate pixels/distance of movement of centre of eye over many cycles of the OKR to determine the frequency, amplitude of the OKR.
 
-# methods to extract OKR and OKN:
-# 1. use a CNN to extract features from the video footage
-# 2. use a RNN to extract the gaze direction from the features
-# 3. use a LSTM to extract the OKN from the gaze direction
-# 4. neural networks leveraging on deep learning to detect eye. 
-#    e.g. RCNN + use of Rectangular-intensity-gradient (RIG) for eye centre localisation (But I don't know how they work)
-# 5. 
+# existing methods to extract OKR and OKN:
+# 1. use a CNN for pupil detection (I don't know how they work yet)
+# 2. neural networks leveraging on deep learning to detect eye. 
+#    e.g. RCNN + use of Rectangular-intensity-gradient (RIG) for eye centre localisation (I don't know how they work yet also)
 
 # how I would do it:
 # opencv to convert video footage of eye into individual image frames
@@ -54,3 +51,5 @@ while success:
   success,image = vidcap.read()
   print('Read a new frame: ', success)
   count += 1
+
+# SVM model to classify eye from non-eye images
